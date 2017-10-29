@@ -115,6 +115,7 @@ class ViewController: UIViewController {
         
         // offline container
         offlineIcon.tintColor = offlineIconColor
+        offlineButton.tintColor = buttonColor
         offlineContainer.isHidden = true
         
         // setup navigation
@@ -125,6 +126,12 @@ class ViewController: UIViewController {
         if (useLightStatusBarStyle) {
             self.navigationController?.navigationBar.barStyle = UIBarStyle.black
         }
+        
+        /*
+        // @DEBUG: test offline view
+        offlineContainer.isHidden = false
+        webViewContainer.isHidden = true
+        */
     }
     
     // load startpage
