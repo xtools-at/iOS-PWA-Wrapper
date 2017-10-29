@@ -18,8 +18,6 @@ class ViewController: UIViewController {
     // MARK: Globals
     var webView: WKWebView!
     var progressBar : UIProgressView!
-    let appUrl = URL(string: "https://www.duckduckgo.com/")
-    let allowedOrigin = "duckduckgo.com"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,13 +31,15 @@ class ViewController: UIViewController {
     }
     
     // UI Actions
+    // handle back press
     @IBAction func onLeftButtonClick(_ sender: Any) {
         if (webView.canGoBack) {
             webView.goBack()
         }
     }
+    // open menu in page
     @IBAction func onRightButtonClick(_ sender: Any) {
-        webView.evaluateJavaScript("alert('boom')", completionHandler: nil)
+        webView.evaluateJavaScript(menuButtonJavascript, completionHandler: nil)
     }
     
     // Observers for updating UI
@@ -71,14 +71,25 @@ class ViewController: UIViewController {
     }
     
     // Initialize UI
+    // Call after WebView has been initialized
     func setupUI() {
         // UI elements
         leftButton.isEnabled = false
         progressBar = UIProgressView(frame: CGRect(x: 0, y: 0, width: webViewContainer.frame.width, height: 50))
         progressBar.autoresizingMask = [.flexibleWidth]
         progressBar.progress = 0.0
-        progressBar.tintColor = UIColor.green.withAlphaComponent(0.6)
+        progressBar.tintColor = progressBarColor
         webView.addSubview(progressBar)
+        
+        // setup navigation
+        navigationItem.title = appTitle
+        if (forceLargeTitle) {
+            navigationItem.largeTitleDisplayMode = UINavigationItem.LargeTitleDisplayMode.always
+        }
+        if (useLightStatusBarStyle) {
+            // UIApplication.shared.setStatusBarStyle(.lightContent, animated: true) // iOS < 9
+            self.navigationController?.navigationBar.barStyle = UIBarStyle.black
+        }
     }
     
     // Initialize App and start loading
@@ -87,7 +98,7 @@ class ViewController: UIViewController {
         setupUI()
 
         // load startpage
-        let urlRequest = URLRequest(url: appUrl!)
+        let urlRequest = URLRequest(url: webAppUrl!)
         webView.load(urlRequest)
     }
     
@@ -103,8 +114,10 @@ extension ViewController: WKNavigationDelegate {
     // didFinish
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         // set title
-        navigationItem.title = webView.title
-        // hide progress bar
+        if (changeAppTitleToPageTitle) {
+            navigationItem.title = webView.title
+        }
+        // hide progress bar after initial load
         progressBar.isHidden = true
     }
     // didFailProvisionalNavigation
@@ -125,7 +138,7 @@ extension ViewController: WKNavigationDelegate {
     }
 }
 
-// WebView
+// WebView additional handlers
 extension ViewController: WKUIDelegate {
     // handle links opening in new tabs
     func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
@@ -134,7 +147,7 @@ extension ViewController: WKUIDelegate {
         }
         return nil
     }
-    // restrict navigation to target host, open external links in Safari
+    // restrict navigation to target host, open external links in 3rd party apps
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         if let requestUrl = navigationAction.request.url {
             if let requestHost = requestUrl.host {

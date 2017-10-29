@@ -10,11 +10,11 @@
 		2D504BEF1FA100E20019B279 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D504BEE1FA100E20019B279 /* AppDelegate.swift */; };
 		2D504BF11FA100E20019B279 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D504BF01FA100E20019B279 /* ViewController.swift */; };
 		2D504BF41FA100E20019B279 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D504BF21FA100E20019B279 /* Main.storyboard */; };
-		2D504BF71FA100E20019B279 /* ios_pwa_wrapper.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2D504BF51FA100E20019B279 /* ios_pwa_wrapper.xcdatamodeld */; };
 		2D504BF91FA100E20019B279 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D504BF81FA100E20019B279 /* Assets.xcassets */; };
 		2D504BFC1FA100E20019B279 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D504BFA1FA100E20019B279 /* LaunchScreen.storyboard */; };
 		2D504C071FA100E20019B279 /* ios_pwa_wrapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D504C061FA100E20019B279 /* ios_pwa_wrapperTests.swift */; };
 		2D504C121FA100E20019B279 /* ios_pwa_wrapperUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D504C111FA100E20019B279 /* ios_pwa_wrapperUITests.swift */; };
+		2DC96ADE1FA5DD32006B5881 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC96ADD1FA5DD32006B5881 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +39,6 @@
 		2D504BEE1FA100E20019B279 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2D504BF01FA100E20019B279 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		2D504BF31FA100E20019B279 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		2D504BF61FA100E20019B279 /* ios_pwa_wrapper.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ios_pwa_wrapper.xcdatamodel; sourceTree = "<group>"; };
 		2D504BF81FA100E20019B279 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2D504BFB1FA100E20019B279 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2D504BFD1FA100E20019B279 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -49,6 +48,7 @@
 		2D504C0D1FA100E20019B279 /* ios-pwa-wrapperUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ios-pwa-wrapperUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D504C111FA100E20019B279 /* ios_pwa_wrapperUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ios_pwa_wrapperUITests.swift; sourceTree = "<group>"; };
 		2D504C131FA100E20019B279 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2DC96ADD1FA5DD32006B5881 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,7 +105,7 @@
 				2D504BF81FA100E20019B279 /* Assets.xcassets */,
 				2D504BFA1FA100E20019B279 /* LaunchScreen.storyboard */,
 				2D504BFD1FA100E20019B279 /* Info.plist */,
-				2D504BF51FA100E20019B279 /* ios_pwa_wrapper.xcdatamodeld */,
+				2DC96ADD1FA5DD32006B5881 /* Constants.swift */,
 			);
 			path = "ios-pwa-wrapper";
 			sourceTree = "<group>";
@@ -262,9 +262,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2D504BF71FA100E20019B279 /* ios_pwa_wrapper.xcdatamodeld in Sources */,
 				2D504BF11FA100E20019B279 /* ViewController.swift in Sources */,
 				2D504BEF1FA100E20019B279 /* AppDelegate.swift in Sources */,
+				2DC96ADE1FA5DD32006B5881 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -558,19 +558,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		2D504BF51FA100E20019B279 /* ios_pwa_wrapper.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				2D504BF61FA100E20019B279 /* ios_pwa_wrapper.xcdatamodel */,
-			);
-			currentVersion = 2D504BF61FA100E20019B279 /* ios_pwa_wrapper.xcdatamodel */;
-			path = ios_pwa_wrapper.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 2D504BE31FA100E20019B279 /* Project object */;
 }
