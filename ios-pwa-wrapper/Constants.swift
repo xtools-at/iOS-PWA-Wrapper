@@ -9,11 +9,18 @@
 //import Foundation
 import UIKit
 
-// Basic configuration
+// Basic App-/WebView-configuration
+let appTitle = "iOS PWA Wrapper"
 let webAppUrl = URL(string: "https://www.duckduckgo.com")
 let allowedOrigin = "duckduckgo.com"
-let appTitle = "iOS PWA Wrapper"
-let menuButtonJavascript = "document.querySelector('body').remove();"
+let menuButtonJavascript = """
+    document.querySelector('body').remove();
+"""
+let useCustomUserAgent = false
+let useUserAgentPostfix = true
+let customUserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A356"
+let userAgentPostfix = "iOSApp"
+
 
 // Settings
 let changeAppTitleToPageTitle = false

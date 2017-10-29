@@ -59,11 +59,26 @@ class ViewController: UIViewController {
         webView = WKWebView(frame: CGRect(x: 0, y: 0, width: webViewContainer.frame.width, height: webViewContainer.frame.height))
         webView.navigationDelegate = self
         webView.uiDelegate = self
-        webViewContainer.addSubview(webView)
         webView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        webViewContainer.addSubview(webView)
         
         // settings
         webView.allowsBackForwardNavigationGestures = true
+        // user agent
+        if (useCustomUserAgent) {
+            webView.customUserAgent = customUserAgent
+        }
+        if (useUserAgentPostfix) {
+            if (useCustomUserAgent) {
+                webView.customUserAgent = customUserAgent + " " + userAgentPostfix
+            } else {
+                webView.evaluateJavaScript("navigator.userAgent", completionHandler: { (result, error) in
+                    if let resultObject = result {
+                        self.webView.customUserAgent = (String(describing: resultObject) + " " + userAgentPostfix)
+                    }
+                })
+            }
+        }
 
         // init observers
         webView.addObserver(self, forKeyPath: #keyPath(WKWebView.isLoading), options: NSKeyValueObservingOptions.new, context: nil)
@@ -71,7 +86,7 @@ class ViewController: UIViewController {
     }
     
     // Initialize UI
-    // Call after WebView has been initialized
+    // call after WebView has been initialized
     func setupUI() {
         // UI elements
         leftButton.isEnabled = false
@@ -87,7 +102,6 @@ class ViewController: UIViewController {
             navigationItem.largeTitleDisplayMode = UINavigationItem.LargeTitleDisplayMode.always
         }
         if (useLightStatusBarStyle) {
-            // UIApplication.shared.setStatusBarStyle(.lightContent, animated: true) // iOS < 9
             self.navigationController?.navigationBar.barStyle = UIBarStyle.black
         }
     }
