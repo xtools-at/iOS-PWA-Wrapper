@@ -15,6 +15,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var leftButton: UIBarButtonItem!
     @IBOutlet weak var rightButton: UIBarButtonItem!
     @IBOutlet weak var webViewContainer: UIView!
+    @IBOutlet weak var offlineContainer: UIStackView!
+    @IBOutlet weak var offlineIcon: UIImageView!
+    @IBOutlet weak var offlineButton: UIButton!
+    
     // MARK: Globals
     var webView: WKWebView!
     var progressBar : UIProgressView!
@@ -43,6 +47,11 @@ class ViewController: UIViewController {
     // open menu in page
     @IBAction func onRightButtonClick(_ sender: Any) {
         webView.evaluateJavaScript(menuButtonJavascript, completionHandler: nil)
+    }
+    @IBAction func onOfflineButtonClick(_ sender: Any) {
+        offlineContainer.isHidden = true
+        webViewContainer.isHidden = false
+        loadAppUrl()
     }
     
     // Observers for updating UI
@@ -92,16 +101,21 @@ class ViewController: UIViewController {
         webView.addObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), options: NSKeyValueObservingOptions.new, context: nil)
     }
     
-    // Initialize UI
+    // Initialize UI elements
     // call after WebView has been initialized
     func setupUI() {
-        // UI elements
         // leftButton.isEnabled = false
+
+        // progress bar
         progressBar = UIProgressView(frame: CGRect(x: 0, y: 0, width: webViewContainer.frame.width, height: 40))
         progressBar.autoresizingMask = [.flexibleWidth]
         progressBar.progress = 0.0
         progressBar.tintColor = progressBarColor
         webView.addSubview(progressBar)
+        
+        // offline container
+        offlineIcon.tintColor = offlineIconColor
+        offlineContainer.isHidden = true
         
         // setup navigation
         navigationItem.title = appTitle
@@ -113,14 +127,17 @@ class ViewController: UIViewController {
         }
     }
     
+    // load startpage
+    func loadAppUrl() {
+        let urlRequest = URLRequest(url: webAppUrl!)
+        webView.load(urlRequest)
+    }
+    
     // Initialize App and start loading
     func setupApp() {
         setupWebView()
         setupUI()
-
-        // load startpage
-        let urlRequest = URLRequest(url: webAppUrl!)
-        webView.load(urlRequest)
+        loadAppUrl()
     }
     
     // Cleanup
@@ -144,10 +161,8 @@ extension ViewController: WKNavigationDelegate {
     // didFailProvisionalNavigation
     func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
         // show offline screen
-        // @TODO
-        let alert = UIAlertController(title: "You're offline", message: "didFailProvisionalNavigation", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        present(alert, animated: true, completion: nil)
+        offlineContainer.isHidden = false
+        webViewContainer.isHidden = true
     }
 }
 
