@@ -85,6 +85,7 @@ class ViewController: UIViewController {
                 })
             }
         }
+        webView.configuration.applicationNameForUserAgent = ""
 
         // init observers
         webView.addObserver(self, forKeyPath: #keyPath(WKWebView.isLoading), options: NSKeyValueObservingOptions.new, context: nil)
