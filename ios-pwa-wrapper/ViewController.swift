@@ -35,6 +35,9 @@ class ViewController: UIViewController {
     @IBAction func onLeftButtonClick(_ sender: Any) {
         if (webView.canGoBack) {
             webView.goBack()
+        } else {
+            // exit app
+            UIControl().sendAction(#selector(URLSessionTask.suspend), to: UIApplication.shared, for: nil)
         }
     }
     // open menu in page
@@ -45,7 +48,8 @@ class ViewController: UIViewController {
     // Observers for updating UI
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if (keyPath == #keyPath(WKWebView.isLoading)) {
-            leftButton.isEnabled = webView.canGoBack
+            // does not fire for PWAs if links are clicked
+            // leftButton.isEnabled = webView.canGoBack
         }
         if (keyPath == #keyPath(WKWebView.estimatedProgress)) {
             progressBar.progress = Float(webView.estimatedProgress)
@@ -64,6 +68,8 @@ class ViewController: UIViewController {
         
         // settings
         webView.allowsBackForwardNavigationGestures = true
+        webView.configuration.ignoresViewportScaleLimits = false
+        webView.configuration.preferences.javaScriptEnabled = true
         // user agent
         if (useCustomUserAgent) {
             webView.customUserAgent = customUserAgent
@@ -89,8 +95,8 @@ class ViewController: UIViewController {
     // call after WebView has been initialized
     func setupUI() {
         // UI elements
-        leftButton.isEnabled = false
-        progressBar = UIProgressView(frame: CGRect(x: 0, y: 0, width: webViewContainer.frame.width, height: 50))
+        // leftButton.isEnabled = false
+        progressBar = UIProgressView(frame: CGRect(x: 0, y: 0, width: webViewContainer.frame.width, height: 40))
         progressBar.autoresizingMask = [.flexibleWidth]
         progressBar.progress = 0.0
         progressBar.tintColor = progressBarColor
@@ -139,14 +145,6 @@ extension ViewController: WKNavigationDelegate {
         // show offline screen
         // @TODO
         let alert = UIAlertController(title: "You're offline", message: "didFailProvisionalNavigation", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        present(alert, animated: true, completion: nil)
-    }
-    // didFail
-    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-        // show offline screen
-        // @TODO
-        let alert = UIAlertController(title: "You're offline", message: "didFail", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         present(alert, animated: true, completion: nil)
     }
