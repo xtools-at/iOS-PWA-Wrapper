@@ -21,8 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Change Navigation style
         UINavigationBar.appearance().barTintColor = navigationBarColor
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor: navigationTitleColor]
-        UINavigationBar.appearance().largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: navigationTitleColor]
         UIBarButtonItem.appearance().tintColor = navigationButtonColor
+        if #available(iOS 11.0, *) {
+            UINavigationBar.appearance().largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: navigationTitleColor]
+        }
 
         return true
     }
