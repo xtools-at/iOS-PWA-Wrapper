@@ -77,24 +77,29 @@ class ViewController: UIViewController {
         
         // settings
         webView.allowsBackForwardNavigationGestures = true
-        webView.configuration.ignoresViewportScaleLimits = false
         webView.configuration.preferences.javaScriptEnabled = true
+        if #available(iOS 10.0, *) {
+            webView.configuration.ignoresViewportScaleLimits = false
+        }
         // user agent
-        if (useCustomUserAgent) {
-            webView.customUserAgent = customUserAgent
-        }
-        if (useUserAgentPostfix) {
+        if #available(iOS 9.0, *) {
             if (useCustomUserAgent) {
-                webView.customUserAgent = customUserAgent + " " + userAgentPostfix
-            } else {
-                webView.evaluateJavaScript("navigator.userAgent", completionHandler: { (result, error) in
-                    if let resultObject = result {
-                        self.webView.customUserAgent = (String(describing: resultObject) + " " + userAgentPostfix)
-                    }
-                })
+                webView.customUserAgent = customUserAgent
             }
+            if (useUserAgentPostfix) {
+                if (useCustomUserAgent) {
+                    webView.customUserAgent = customUserAgent + " " + userAgentPostfix
+                } else {
+                    webView.evaluateJavaScript("navigator.userAgent", completionHandler: { (result, error) in
+                        if let resultObject = result {
+                            self.webView.customUserAgent = (String(describing: resultObject) + " " + userAgentPostfix)
+                        }
+                    })
+                }
+            }
+            webView.configuration.applicationNameForUserAgent = ""
         }
-        webView.configuration.applicationNameForUserAgent = ""
+        
 
         // init observers
         webView.addObserver(self, forKeyPath: #keyPath(WKWebView.isLoading), options: NSKeyValueObservingOptions.new, context: nil)
@@ -121,7 +126,9 @@ class ViewController: UIViewController {
         // setup navigation
         navigationItem.title = appTitle
         if (forceLargeTitle) {
-            navigationItem.largeTitleDisplayMode = UINavigationItem.LargeTitleDisplayMode.always
+            if #available(iOS 11.0, *) {
+                navigationItem.largeTitleDisplayMode = UINavigationItem.LargeTitleDisplayMode.always
+            }
         }
         if (useLightStatusBarStyle) {
             self.navigationController?.navigationBar.barStyle = UIBarStyle.black
@@ -191,7 +198,12 @@ extension ViewController: WKUIDelegate {
                 } else {
                     decisionHandler(.cancel)
                     if (UIApplication.shared.canOpenURL(requestUrl)) {
-                        UIApplication.shared.open(requestUrl)
+                        if #available(iOS 10.0, *) {
+                            UIApplication.shared.open(requestUrl)
+                        } else {
+                            // Fallback on earlier versions
+                            UIApplication.shared.openURL(requestUrl)
+                        }
                     }
                 }
             } else {
