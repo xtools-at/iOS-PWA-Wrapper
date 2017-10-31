@@ -34,7 +34,10 @@ I know, using a Wrapper-App to display a Website can feel a bit odd. But there a
     - iOS doesn't like transparency, use background colors on your icons.
     - I like using [App Icon Maker](http://appiconmaker.co), but any other similar service will do it as well.
     - Don't forget the `launcher` icon!
-- Change _Bundle Identifier_ and _Display Name_
+- In the Project Overview
+    - change _Bundle Identifier_ and _Display Name_
+    - add your Certificates and tweak the rest as you wish
+    - a _Deployment Target_ of iOS 10.0 is set by default, as the [offline cache isn't preserved after closing the app in earlier versions](https://stackoverflow.com/questions/29892898/enable-application-cache-in-wkwebview/44333359#44333359). Therefore, the wrapper is only tested on iOS 10+ and there's no official support for earlier versions for now.
 - Build App in Xcode
 
 ### I don't accept Feature Requests, only Pull Requests :)
