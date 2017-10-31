@@ -28,8 +28,10 @@ I know, using a Wrapper-App to display a Website can feel a bit odd. But there a
     - customize the colors
     - tweak the other options as you prefer
 - Put your own App icons in place in `Assets.xcassets`
-    - Remember, 1pt equals 1px on 1x-size. E.g., if you have to provide a 20pt icon in 3x-size, it has to be 60x60px.
+    - Remember, 1pt equals 1px on 1x-size. E.g., if you have to provide a 20pt icon of 3x-size, it has to be 60x60px.
+    - iOS doesn't like transparency, use background colors.
     - I like using [App Icon Maker](http://appiconmaker.co), but any other similar service will do it as well.
+    - Don't forget the `launcher` icon!
 - Change _Bundle Identifier_ and _Display Name_
 - Build App in Xcode
 

@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var leftButton: UIBarButtonItem!
     @IBOutlet weak var rightButton: UIBarButtonItem!
     @IBOutlet weak var webViewContainer: UIView!
-    @IBOutlet weak var offlineContainer: UIStackView!
+    @IBOutlet weak var offlineView: UIView!
     @IBOutlet weak var offlineIcon: UIImageView!
     @IBOutlet weak var offlineButton: UIButton!
     
@@ -49,7 +49,7 @@ class ViewController: UIViewController {
         webView.evaluateJavaScript(menuButtonJavascript, completionHandler: nil)
     }
     @IBAction func onOfflineButtonClick(_ sender: Any) {
-        offlineContainer.isHidden = true
+        offlineView.isHidden = true
         webViewContainer.isHidden = false
         loadAppUrl()
     }
@@ -116,7 +116,7 @@ class ViewController: UIViewController {
         // offline container
         offlineIcon.tintColor = offlineIconColor
         offlineButton.tintColor = buttonColor
-        offlineContainer.isHidden = true
+        offlineView.isHidden = true
         
         // setup navigation
         navigationItem.title = appTitle
@@ -129,7 +129,7 @@ class ViewController: UIViewController {
         
         /*
         // @DEBUG: test offline view
-        offlineContainer.isHidden = false
+        offlineView.isHidden = false
         webViewContainer.isHidden = true
         */
     }
@@ -168,7 +168,7 @@ extension ViewController: WKNavigationDelegate {
     // didFailProvisionalNavigation
     func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
         // show offline screen
-        offlineContainer.isHidden = false
+        offlineView.isHidden = false
         webViewContainer.isHidden = true
     }
 }

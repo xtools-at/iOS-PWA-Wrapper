@@ -1,0 +1,12 @@
+
+/* Class = "UILabel"; text = "You are offline."; ObjectID = "2o9-AL-VUQ"; */
+"2o9-AL-VUQ.text" = "Keine Internetverbindung.";
+
+/* Class = "UIBarButtonItem"; title = "Menu"; ObjectID = "DBy-OS-v6d"; */
+"DBy-OS-v6d.title" = "Menü";
+
+/* Class = "UIButton"; normalTitle = "Tap here to retry!"; ObjectID = "M9z-jX-53J"; */
+"M9z-jX-53J.normalTitle" = "Hier tippen um es erneut zu versuchen!";
+
+/* Class = "UIBarButtonItem"; title = "Back"; ObjectID = "mlw-cf-kRg"; */
+"mlw-cf-kRg.title" = "Zurück";
