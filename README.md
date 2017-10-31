@@ -17,19 +17,21 @@ I know, using a Wrapper-App to display a Website can feel a bit odd. But there a
 - Provides a native iOS navigation header.
 - Sets up a WKWebView instance just the way PWAs/SPAs like it.
 - Provided your Web App is Offline-capable, it only needs an Internet connection on the first startup. If this fails, it shows a native refresh widget.
-- Opens all external URLs in the device's Browser instead.
-- Automatically fetches Updates for your Web App.
+- Opens all external URLs in the device's Browser / 3rd party apps instead.
+- Automatically fetches updates of your Web App.
 
 ## How to build your own
 - Clone/fork repository and open in Xcode
 - Head over to `Constants.swift` and
     - add your app's name and the main URL to fetch
     - set the host you want to restrict your app to
+    - add your custom Javascript string to open your Web App's menu.
+        - this is injected into the site when the "Menu" button is pressed. This wrapper assumes you're hiding your Web App's header in favor of the native App navigation and show/hide your menu via Javascript.
     - customize the colors
     - tweak the other options as you prefer
 - Put your own App icons in place in `Assets.xcassets`
     - Remember, 1pt equals 1px on 1x-size. E.g., if you have to provide a 20pt icon of 3x-size, it has to be 60x60px.
-    - iOS doesn't like transparency, use background colors.
+    - iOS doesn't like transparency, use background colors on your icons.
     - I like using [App Icon Maker](http://appiconmaker.co), but any other similar service will do it as well.
     - Don't forget the `launcher` icon!
 - Change _Bundle Identifier_ and _Display Name_
