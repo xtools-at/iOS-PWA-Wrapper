@@ -18,6 +18,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var offlineView: UIView!
     @IBOutlet weak var offlineIcon: UIImageView!
     @IBOutlet weak var offlineButton: UIButton!
+    @IBOutlet weak var activityIndicatorView: UIView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     // MARK: Globals
     var webView: WKWebView!
@@ -56,12 +58,13 @@ class ViewController: UIViewController {
     
     // Observers for updating UI
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        /*
         if (keyPath == #keyPath(WKWebView.isLoading)) {
-            // does not fire for PWAs if links are clicked
-            // leftButton.isEnabled = webView.canGoBack
+            // show activity indicator
+            if (webView.isLoading) {
+                activityIndicatorView.isHidden = false
+                activityIndicator.startAnimating()
+            }
         }
-        */
         if (keyPath == #keyPath(WKWebView.estimatedProgress)) {
             progressBar.progress = Float(webView.estimatedProgress)
             rightButton.isEnabled = (webView.estimatedProgress == 1)
@@ -120,6 +123,10 @@ class ViewController: UIViewController {
         progressBar.tintColor = progressBarColor
         webView.addSubview(progressBar)
         
+        // activity indicator
+        activityIndicator.color = activityIndicatorColor
+        activityIndicator.startAnimating()
+        
         // offline container
         offlineIcon.tintColor = offlineIconColor
         offlineButton.tintColor = buttonColor
@@ -173,6 +180,9 @@ extension ViewController: WKNavigationDelegate {
         }
         // hide progress bar after initial load
         progressBar.isHidden = true
+        // hide activity indicator
+        activityIndicatorView.isHidden = true
+        activityIndicator.stopAnimating()
     }
     // didFailProvisionalNavigation
     func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
