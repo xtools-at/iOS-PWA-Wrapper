@@ -32,6 +32,7 @@ let navigationButtonColor = navigationTitleColor
 let progressBarColor = getColorFromHex(hex: 0x4CAF50, alpha: 1.0)
 let offlineIconColor = UIColor.darkGray
 let buttonColor = navigationBarColor
+let activityIndicatorColor = navigationBarColor
 
 // Color Helper function
 func getColorFromHex(hex: UInt, alpha: CGFloat) -> UIColor {
