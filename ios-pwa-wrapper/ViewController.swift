@@ -56,10 +56,12 @@ class ViewController: UIViewController {
     
     // Observers for updating UI
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        /*
         if (keyPath == #keyPath(WKWebView.isLoading)) {
             // does not fire for PWAs if links are clicked
             // leftButton.isEnabled = webView.canGoBack
         }
+        */
         if (keyPath == #keyPath(WKWebView.estimatedProgress)) {
             progressBar.progress = Float(webView.estimatedProgress)
             rightButton.isEnabled = (webView.estimatedProgress == 1)
