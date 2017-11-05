@@ -6,8 +6,6 @@ Drafted for the future iOS App of my [Leasing Calculator](https://www.leasingrec
 
 For bringing offline-capabilities to your Web App on Safari and iOS' embedded WebKit browser, you have to use [AppCache](https://developer.mozilla.org/en-US/docs/Web/HTML/Using_the_application_cache). [Service Worker API](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API) is not yet supported in WebKit, so you might want to use something like [Appcache Webpack Plugin](https://github.com/lettertwo/appcache-webpack-plugin) to make your PWA offline-accessible on iOS in a somewhat easy way.
 
-### Under development, don't use for your apps yet. First Release coming soon!
-
 ## Why would I use a wrapper?
 I know, using a Wrapper-App to display a Website can feel a bit odd. But there are a few good reasons why you'd package your Web App like this.
 - If you've got a very sophisticated UI already, it might make sense not to rebuild it from scratch for multiple platforms, especally if it's a Single Page Application already, that doesn't "feel" like a Website.
