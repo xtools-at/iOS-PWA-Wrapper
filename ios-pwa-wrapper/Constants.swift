@@ -16,20 +16,22 @@ let menuButtonTitle = NSLocalizedString("menu", comment: "")
 let menuButtonJavascript = """
     $('.button-collapse').sideNav('show');
 """
+let useUserAgentPostfix = true
+let userAgentPostfix = "iOSApp"
+let useCustomUserAgent = false
+let customUserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 11_0_1 like Mac OS X) AppleWebKit/604.2.10 (KHTML, like Gecko) Mobile/15A8401"
+
+// UI Settings
+let changeAppTitleToPageTitle = false
+let forceLargeTitle = false
+
+// change Menu button depending on screen width
+let changeMenuButtonOnWideScreens = false
+let wideScreenMinWidth = CGFloat(993) // your CSS Media Query px-breakpoint
 let alternateRightButtonTitle = NSLocalizedString("share", comment: "")
 let alternateRightButtonJavascript = """
     $('#share-link').click();
 """
-let useCustomUserAgent = false
-let useUserAgentPostfix = true
-let customUserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 11_0_1 like Mac OS X) AppleWebKit/604.2.10 (KHTML, like Gecko) Mobile/15A8401"
-let userAgentPostfix = "iOSApp"
-
-// Settings
-let changeAppTitleToPageTitle = false
-let forceLargeTitle = false
-let changeMenuButtonOnWideScreens = false
-let wideScreenMinWidth = CGFloat(993) // your CSS Media Query px-breakpoint
 
 // Colors & Styles
 let useLightStatusBarStyle = true
