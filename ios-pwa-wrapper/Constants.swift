@@ -28,7 +28,7 @@ let userAgentPostfix = "iOSApp"
 // Settings
 let changeAppTitleToPageTitle = false
 let forceLargeTitle = false
-let changeMenuButtonOnWideScreens = false
+let changeMenuButtonOnWideScreens = true
 let wideScreenMinWidth = CGFloat(993) // your CSS Media Query px-breakpoint
 
 // Colors & Styles
