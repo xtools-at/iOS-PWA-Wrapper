@@ -150,6 +150,7 @@ class ViewController: UIViewController {
         
         // handle menu button changes
         updateRightButtonTitle(invert: false)
+        // this fires BEFORE the UI is updated, so we check for the opposite orientation if it's not the initial setup
         let deviceRotationCallback : (Notification) -> Void = { _ in
             self.updateRightButtonTitle(invert: true)
         }
@@ -183,7 +184,7 @@ class ViewController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: .UIDeviceOrientationDidChange, object: nil)
     }
     
-    // Helper method to determine screen size
+    // Helper method to determine wide screen width
     func isWideScreen() -> Bool {
         // this considers device orientation too.
         if (UIScreen.main.bounds.width >= wideScreenMinWidth) {
@@ -193,16 +194,32 @@ class ViewController: UIViewController {
         }
     }
     
-    // Helper method to update right button text
-    // this fires BEFORE the UI is updated, so we check for the opposite if it's not the initial setup
+    // UI Helper method to update right button text according to available screen width
     func updateRightButtonTitle(invert: Bool) {
         if (changeMenuButtonOnWideScreens) {
+            // first, check if device is wide enough to
+            if (UIScreen.main.fixedCoordinateSpace.bounds.height < wideScreenMinWidth) {
+                // long side of the screen is not long enough, don't need to update
+                return
+            }
+            // second, check if both portrait and landscape would fit
+            if (UIScreen.main.fixedCoordinateSpace.bounds.height >= wideScreenMinWidth
+                && UIScreen.main.fixedCoordinateSpace.bounds.width >= wideScreenMinWidth) {
+                // both orientations are considered "wide"
+                rightButton.title = alternateRightButtonTitle
+                return
+            }
+            
+            // if we land here, check the current screen width.
+            // we need to flip it around in some cases though, as our callback is triggered before the UI is updated
             let changeToAlternateTitle = invert
                 ? !isWideScreen()
                 : isWideScreen()
-            changeToAlternateTitle
-                ? (rightButton.title = alternateRightButtonTitle)
-                : (rightButton.title = menuButtonTitle)
+            if (changeToAlternateTitle) {
+                rightButton.title = alternateRightButtonTitle
+            } else {
+                rightButton.title = menuButtonTitle
+            }
         }
     }
 }
