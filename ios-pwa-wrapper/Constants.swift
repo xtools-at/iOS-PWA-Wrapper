@@ -12,8 +12,13 @@ import UIKit
 let appTitle = "Leasing Rechner"
 let webAppUrl = URL(string: "https://www.leasingrechnen.at")
 let allowedOrigin = "leasingrechnen.at"
+let menuButtonTitle = NSLocalizedString("menu", comment: "")
 let menuButtonJavascript = """
     $('.button-collapse').sideNav('show');
+"""
+let alternateRightButtonTitle = NSLocalizedString("share", comment: "")
+let alternateRightButtonJavascript = """
+    $('#share-link').click();
 """
 let useCustomUserAgent = false
 let useUserAgentPostfix = true
@@ -23,6 +28,8 @@ let userAgentPostfix = "iOSApp"
 // Settings
 let changeAppTitleToPageTitle = false
 let forceLargeTitle = false
+let changeMenuButtonOnWideScreens = false
+let wideScreenMinWidth = CGFloat(993) // your CSS Media Query px-breakpoint
 
 // Colors & Styles
 let useLightStatusBarStyle = true
