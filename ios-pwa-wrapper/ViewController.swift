@@ -149,12 +149,17 @@ class ViewController: UIViewController {
         }
         
         // handle menu button changes
+        /// set default
+        rightButton.title = menuButtonTitle
+        /// update if necessary
         updateRightButtonTitle(invert: false)
-        // this fires BEFORE the UI is updated, so we check for the opposite orientation if it's not the initial setup
+        /// create callback for device rotation
         let deviceRotationCallback : (Notification) -> Void = { _ in
+            // this fires BEFORE the UI is updated, so we check for the opposite orientation,
+            // if it's not the initial setup
             self.updateRightButtonTitle(invert: true)
         }
-        // listen for device rotation
+        /// listen for device rotation
         NotificationCenter.default.addObserver(forName: .UIDeviceOrientationDidChange, object: nil, queue: .main, using: deviceRotationCallback)
 
         /*
@@ -239,6 +244,7 @@ extension ViewController: WKNavigationDelegate {
         activityIndicator.stopAnimating()
     }
     // didFailProvisionalNavigation
+    // == we are offline / page not available
     func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
         // show offline screen
         offlineView.isHidden = false
