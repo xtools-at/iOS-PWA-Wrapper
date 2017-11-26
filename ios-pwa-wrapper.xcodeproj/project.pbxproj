@@ -14,6 +14,7 @@
 		2D504BFC1FA100E20019B279 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D504BFA1FA100E20019B279 /* LaunchScreen.storyboard */; };
 		2D504C071FA100E20019B279 /* ios_pwa_wrapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D504C061FA100E20019B279 /* ios_pwa_wrapperTests.swift */; };
 		2D504C121FA100E20019B279 /* ios_pwa_wrapperUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D504C111FA100E20019B279 /* ios_pwa_wrapperUITests.swift */; };
+		2D6EEE561FCB2FCB0054837D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2D6EEE581FCB2FCB0054837D /* Localizable.strings */; };
 		2DC96ADE1FA5DD32006B5881 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC96ADD1FA5DD32006B5881 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +50,8 @@
 		2D504C111FA100E20019B279 /* ios_pwa_wrapperUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ios_pwa_wrapperUITests.swift; sourceTree = "<group>"; };
 		2D504C131FA100E20019B279 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2D64358A1FA62B5800ECC5D2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		2D6EEE571FCB2FCB0054837D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		2D6EEE591FCB2FCD0054837D /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2D9480D21FA8B96000ED0A97 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		2DC96ADD1FA5DD32006B5881 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -108,6 +111,7 @@
 				2D504BFA1FA100E20019B279 /* LaunchScreen.storyboard */,
 				2D504BFD1FA100E20019B279 /* Info.plist */,
 				2DC96ADD1FA5DD32006B5881 /* Constants.swift */,
+				2D6EEE581FCB2FCB0054837D /* Localizable.strings */,
 			);
 			path = "ios-pwa-wrapper";
 			sourceTree = "<group>";
@@ -219,6 +223,7 @@
 			knownRegions = (
 				en,
 				Base,
+				de,
 			);
 			mainGroup = 2D504BE21FA100E20019B279;
 			productRefGroup = 2D504BEC1FA100E20019B279 /* Products */;
@@ -238,6 +243,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D504BFC1FA100E20019B279 /* LaunchScreen.storyboard in Resources */,
+				2D6EEE561FCB2FCB0054837D /* Localizable.strings in Resources */,
 				2D504BF91FA100E20019B279 /* Assets.xcassets in Resources */,
 				2D504BF41FA100E20019B279 /* Main.storyboard in Resources */,
 			);
@@ -318,6 +324,15 @@
 				2D504BFB1FA100E20019B279 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		2D6EEE581FCB2FCB0054837D /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2D6EEE571FCB2FCB0054837D /* en */,
+				2D6EEE591FCB2FCD0054837D /* de */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
