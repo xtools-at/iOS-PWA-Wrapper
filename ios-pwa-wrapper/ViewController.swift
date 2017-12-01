@@ -28,6 +28,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        self.title = appTitle
         setupApp()
     }
 
@@ -137,8 +138,7 @@ class ViewController: UIViewController {
         offlineButton.tintColor = buttonColor
         offlineView.isHidden = true
         
-        // setup navigation
-        navigationItem.title = appTitle
+        // setup navigation bar
         if (forceLargeTitle) {
             if #available(iOS 11.0, *) {
                 navigationItem.largeTitleDisplayMode = UINavigationItem.LargeTitleDisplayMode.always
