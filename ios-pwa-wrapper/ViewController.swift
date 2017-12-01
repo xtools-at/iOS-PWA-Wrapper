@@ -42,6 +42,9 @@ class ViewController: UIViewController {
     @IBAction func onLeftButtonClick(_ sender: Any) {
         if (webView.canGoBack) {
             webView.goBack()
+            // fix a glitch, as the above seems to trigger observeValue -> WKWebView.isLoading
+            activityIndicatorView.isHidden = true
+            activityIndicator.stopAnimating()
         } else {
             // exit app
             UIControl().sendAction(#selector(URLSessionTask.suspend), to: UIApplication.shared, for: nil)
