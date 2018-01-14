@@ -26,6 +26,7 @@ let changeAppTitleToPageTitle = false
 let forceLargeTitle = false
 
 // change Menu button depending on screen width
+// IMPORTANT: do not enable this yet, it's still buggy
 let changeMenuButtonOnWideScreens = false
 let wideScreenMinWidth = CGFloat(993) // your CSS Media Query px-breakpoint
 let alternateRightButtonTitle = NSLocalizedString("share", comment: "")
