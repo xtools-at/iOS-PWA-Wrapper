@@ -9,7 +9,7 @@
 import UIKit
 
 // Basic App-/WebView-configuration
-let appTitle = "Leasing Rechner"
+let appTitle = "Leasingrechner"
 let webAppUrl = URL(string: "https://www.leasingrechnen.at")
 let allowedOrigin = "leasingrechnen.at"
 let menuButtonTitle = NSLocalizedString("menu", comment: "")
