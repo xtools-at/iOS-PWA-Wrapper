@@ -69,10 +69,16 @@ class ViewController: UIViewController {
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if (keyPath == #keyPath(WKWebView.isLoading)) {
             // show activity indicator
+
+            /*
+            // this causes troubles when swiping back and forward.
+            // having this disabled means that the activity view is only shown on the startup of the app.
+            // ...which is fair enough.
             if (webView.isLoading) {
                 activityIndicatorView.isHidden = false
                 activityIndicator.startAnimating()
             }
+            */
         }
         if (keyPath == #keyPath(WKWebView.estimatedProgress)) {
             progressBar.progress = Float(webView.estimatedProgress)
