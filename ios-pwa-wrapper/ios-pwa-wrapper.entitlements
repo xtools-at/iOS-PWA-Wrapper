@@ -4,13 +4,13 @@
 <dict>
 	<key>com.apple.developer.associated-domains</key>
 	<array>
-		<string>applinks:*.leasingrechnen.at</string>
+		<string>applinks:www.leasingrechnen.at</string>
 		<string>applinks:leasingrechnen.at</string>
-		<string>activitycontinuation:*.leasingrechnen.at</string>
+		<string>activitycontinuation:www.leasingrechnen.at</string>
 		<string>activitycontinuation:leasingrechnen.at</string>
-		<string>applinks:*.lsng.me</string>
+		<string>applinks:www.lsng.me</string>
 		<string>applinks:lsng.me</string>
-		<string>activitycontinuation:*.lsng.me</string>
+		<string>activitycontinuation:www.lsng.me</string>
 		<string>activitycontinuation:lsng.me</string>
 	</array>
 </dict>
