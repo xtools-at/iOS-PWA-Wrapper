@@ -28,6 +28,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         return true
     }
+    
+    // Universal Links Receiver
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
+
+        // first cleanup, check for activityType and malformed URLs
+        guard userActivity.activityType == NSUserActivityTypeBrowsingWeb,
+            let url = userActivity.webpageURL,
+            let _ = URLComponents(url: url, resolvingAgainstBaseURL: true) else {
+                return false
+        }
+        // check if correct origin
+        if url.absoluteString.contains(allowedOrigin) {
+            if let rootViewController = window?.rootViewController as? ViewController {
+                rootViewController.handleUniversalLink(url: url)
+                return true
+            }
+        }
+        // open in Safari if it can't be handled
+        application.open(url)
+        return false
+    }
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

@@ -184,6 +184,12 @@ class ViewController: UIViewController {
         webView.load(urlRequest)
     }
     
+    // handle Universal Links
+    func handleUniversalLink(url: URL) {
+        let urlRequest = URLRequest(url: url)
+        webView.load(urlRequest)
+    }
+    
     // Initialize App and start loading
     func setupApp() {
         setupWebView()
