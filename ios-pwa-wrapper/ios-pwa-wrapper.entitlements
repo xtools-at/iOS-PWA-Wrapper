@@ -6,6 +6,12 @@
 	<array>
 		<string>applinks:*.leasingrechnen.at</string>
 		<string>applinks:leasingrechnen.at</string>
+		<string>activitycontinuation:*.leasingrechnen.at</string>
+		<string>activitycontinuation:leasingrechnen.at</string>
+		<string>applinks:*.lsng.me</string>
+		<string>applinks:lsng.me</string>
+		<string>activitycontinuation:*.lsng.me</string>
+		<string>activitycontinuation:lsng.me</string>
 	</array>
 </dict>
 </plist>
