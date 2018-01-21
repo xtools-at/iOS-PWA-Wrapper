@@ -12,6 +12,7 @@ import UIKit
 let appTitle = "Leasingrechner"
 let webAppUrl = URL(string: "https://www.leasingrechnen.at")
 let allowedOrigin = "leasingrechnen.at"
+let allowedOriginShort = "lsng.me"
 let menuButtonTitle = NSLocalizedString("menu", comment: "")
 let menuButtonJavascript = """
     $('.button-collapse').sideNav('show');
