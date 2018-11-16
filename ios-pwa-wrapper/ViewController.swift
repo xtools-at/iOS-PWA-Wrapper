@@ -24,6 +24,7 @@ class ViewController: UIViewController {
     // MARK: Globals
     var webView: WKWebView!
     var progressBar : UIProgressView!
+    var ulUrl : URL!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -186,8 +187,19 @@ class ViewController: UIViewController {
     
     // handle Universal Links
     func handleUniversalLink(url: URL) {
-        let urlRequest = URLRequest(url: url)
-        webView.load(urlRequest)
+        //let urlRequest = URLRequest(url: url)
+        //webView.load(urlRequest)
+        ulUrl = url
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
+        let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
+            print(data!)
+            self.activityIndicator.isHidden = true
+            self.activityIndicator.stopAnimating()
+            self.offlineView.isHidden = false
+        }
+        
+        task.resume()
     }
     
     // Initialize App and start loading
