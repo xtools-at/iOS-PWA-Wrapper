@@ -120,6 +120,8 @@ class ViewController: UIViewController {
             webView.configuration.applicationNameForUserAgent = ""
         }
         
+        // bounces
+        webView.scrollView.bounces = enableBounceWhenScrolling
 
         // init observers
         webView.addObserver(self, forKeyPath: #keyPath(WKWebView.isLoading), options: NSKeyValueObservingOptions.new, context: nil)
