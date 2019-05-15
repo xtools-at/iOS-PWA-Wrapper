@@ -2,8 +2,14 @@
 
 An iOS Wrapper application to create a native iOS App from an offline-capable Progressive Web App.
 
-Drafted for the future iOS App of my [Leasing Calculator](https://www.leasingrechnen.at) Web App using [React](https://github.com/facebook/react), [Redux](https://github.com/reactjs/redux), [Materialize.css](https://github.com/Dogfalo/materialize) and a lot of Offline-First love over at [leasingrechnen.at](https://www.leasingrechnen.at).
+Drafted for the [iOS App](https://itunes.apple.com/at/app/leasing-rechner-%C3%B6sterreich/id1304432852?l=de&mt=8) of my [Leasing Calculator](https://www.leasingrechnen.at) Web App using [React](https://github.com/facebook/react), [Redux](https://github.com/reactjs/redux), [Materialize.css](https://github.com/Dogfalo/materialize) and a lot of Offline-First love over at [leasingrechnen.at](https://www.leasingrechnen.at).
 
+## Looking for Android or Desktop?
+Check out my other projects:
+- [Android-PWA-Wrapper](https://github.com/xtools-at/Android-PWA-Wrapper) for Android
+- [Electron-PWA-Wrapper](https://github.com/xtools-at/Electron-PWA-Wrapper) for macOS, Windows and Linux
+
+## Prequisites
 For bringing offline-capabilities to your Web App on Safari and iOS' embedded WebKit browser, you have to use [AppCache](https://developer.mozilla.org/en-US/docs/Web/HTML/Using_the_application_cache). [Service Worker API](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API) is not yet supported in WebKit, so you might want to use something like [Appcache Webpack Plugin](https://github.com/lettertwo/appcache-webpack-plugin) to make your PWA offline-accessible on iOS in a somewhat easy way.
 
 ## Why would I use a wrapper?
@@ -42,3 +48,4 @@ I know, using a Wrapper-App to display a Website can feel a bit odd. But there a
 
 ## License
 [GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.en.html) - if you use it, we wanna see it!
+Other licensing options are available on inquiry.

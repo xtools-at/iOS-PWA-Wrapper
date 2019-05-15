@@ -23,6 +23,7 @@ class ViewController: UIViewController {
     
     // MARK: Globals
     var webView: WKWebView!
+    var tempView: WKWebView!
     var progressBar : UIProgressView!
 
     override func viewDidLoad() {
@@ -110,9 +111,11 @@ class ViewController: UIViewController {
                 if (useCustomUserAgent) {
                     webView.customUserAgent = customUserAgent + " " + userAgentPostfix
                 } else {
-                    webView.evaluateJavaScript("navigator.userAgent", completionHandler: { (result, error) in
+                    tempView = WKWebView(frame: .zero)
+                    tempView.evaluateJavaScript("navigator.userAgent", completionHandler: { (result, error) in
                         if let resultObject = result {
                             self.webView.customUserAgent = (String(describing: resultObject) + " " + userAgentPostfix)
+                            self.tempView = nil
                         }
                     })
                 }
@@ -120,6 +123,8 @@ class ViewController: UIViewController {
             webView.configuration.applicationNameForUserAgent = ""
         }
         
+        // bounces
+        webView.scrollView.bounces = enableBounceWhenScrolling
 
         // init observers
         webView.addObserver(self, forKeyPath: #keyPath(WKWebView.isLoading), options: NSKeyValueObservingOptions.new, context: nil)
