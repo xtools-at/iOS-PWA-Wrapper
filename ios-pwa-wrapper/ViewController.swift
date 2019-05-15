@@ -23,6 +23,7 @@ class ViewController: UIViewController {
     
     // MARK: Globals
     var webView: WKWebView!
+    var tempView: WKWebView!
     var progressBar : UIProgressView!
 
     override func viewDidLoad() {
@@ -89,6 +90,7 @@ class ViewController: UIViewController {
     // Initialize WKWebView
     func setupWebView() {
         // set up webview
+        tempView = WKWebView(frame: .zero)
         webView = WKWebView(frame: CGRect(x: 0, y: 0, width: webViewContainer.frame.width, height: webViewContainer.frame.height))
         webView.navigationDelegate = self
         webView.uiDelegate = self
@@ -110,9 +112,10 @@ class ViewController: UIViewController {
                 if (useCustomUserAgent) {
                     webView.customUserAgent = customUserAgent + " " + userAgentPostfix
                 } else {
-                    webView.evaluateJavaScript("navigator.userAgent", completionHandler: { (result, error) in
+                    tempView.evaluateJavaScript("navigator.userAgent", completionHandler: { (result, error) in
                         if let resultObject = result {
                             self.webView.customUserAgent = (String(describing: resultObject) + " " + userAgentPostfix)
+                            self.tempView = nil
                         }
                     })
                 }
