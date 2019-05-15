@@ -90,7 +90,6 @@ class ViewController: UIViewController {
     // Initialize WKWebView
     func setupWebView() {
         // set up webview
-        tempView = WKWebView(frame: .zero)
         webView = WKWebView(frame: CGRect(x: 0, y: 0, width: webViewContainer.frame.width, height: webViewContainer.frame.height))
         webView.navigationDelegate = self
         webView.uiDelegate = self
@@ -112,6 +111,7 @@ class ViewController: UIViewController {
                 if (useCustomUserAgent) {
                     webView.customUserAgent = customUserAgent + " " + userAgentPostfix
                 } else {
+                    tempView = WKWebView(frame: .zero)
                     tempView.evaluateJavaScript("navigator.userAgent", completionHandler: { (result, error) in
                         if let resultObject = result {
                             self.webView.customUserAgent = (String(describing: resultObject) + " " + userAgentPostfix)
