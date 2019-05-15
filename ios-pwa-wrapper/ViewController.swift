@@ -9,7 +9,7 @@
 import UIKit
 import WebKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UIScrollViewDelegate {
     
     // MARK: Outlets
     @IBOutlet weak var leftButton: UIBarButtonItem!
@@ -93,6 +93,8 @@ class ViewController: UIViewController {
         webView = WKWebView(frame: CGRect(x: 0, y: 0, width: webViewContainer.frame.width, height: webViewContainer.frame.height))
         webView.navigationDelegate = self
         webView.uiDelegate = self
+        webView.scrollView.delegate = self
+        webView.navigationDelegate = self
         webView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         webViewContainer.addSubview(webView)
         
@@ -201,6 +203,11 @@ class ViewController: UIViewController {
         webView.removeObserver(self, forKeyPath: #keyPath(WKWebView.isLoading))
         webView.removeObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress))
         NotificationCenter.default.removeObserver(self, name: .UIDeviceOrientationDidChange, object: nil)
+    }
+    
+    // Disable zooming
+    func scrollViewWillBeginZooming(_ scrollView: UIScrollView, with view: UIView?) {
+        scrollView.pinchGestureRecognizer?.isEnabled = allowZoom
     }
     
     // Helper method to determine wide screen width

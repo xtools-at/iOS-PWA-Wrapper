@@ -25,6 +25,7 @@ let customUserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 11_0_1 like Mac OS X) 
 let changeAppTitleToPageTitle = false
 let forceLargeTitle = false
 let enableBounceWhenScrolling = true
+let allowZoom = true
 
 // change Menu button depending on screen width
 // IMPORTANT: do not enable this yet, it's still buggy
