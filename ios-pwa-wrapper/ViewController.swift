@@ -282,11 +282,20 @@ extension ViewController: WKUIDelegate {
         }
         return nil
     }
-    // restrict navigation to target host, open external links in 3rd party apps
+    // restrict navigation to target host, open external links in browser/3rd party apps
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         if let requestUrl = navigationAction.request.url {
             if let requestHost = requestUrl.host {
-                if (requestHost.range(of: allowedOrigin) != nil ) {
+                var openInWrapper = false
+                // loop over allowed origins
+                for allowedOrigin in allowedOrigins  {
+                    if (requestHost.range(of: allowedOrigin) != nil) {
+                        openInWrapper = true
+                        break
+                    }
+                }
+                // open link
+                if (openInWrapper) {
                     decisionHandler(.allow)
                 } else {
                     decisionHandler(.cancel)
