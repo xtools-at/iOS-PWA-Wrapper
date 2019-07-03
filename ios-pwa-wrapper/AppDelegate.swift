@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     // Universal Links Receiver
-    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
+    private func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
 
         // first cleanup, check for activityType and malformed URLs
         guard userActivity.activityType == NSUserActivityTypeBrowsingWeb,
@@ -39,7 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 return false
         }
         // check if correct origin
-        if url.absoluteString.contains(allowedOrigin) {
+        if url.absoluteString.contains(allowedOrigins[0]) {
             if let rootViewController = window?.rootViewController as? ViewController {
                 rootViewController.handleUniversalLink(url: url)
                 return true
