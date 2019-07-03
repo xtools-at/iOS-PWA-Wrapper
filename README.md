@@ -6,7 +6,7 @@ Drafted for the [iOS App](https://itunes.apple.com/at/app/leasing-rechner-%C3%B6
 
 ## Looking for Android or Desktop?
 Check out my other projects:
-- [Android-PWA-Wrapper](Android-PWA-Wrapper) for Android
+- [Android-PWA-Wrapper](https://github.com/xtools-at/Android-PWA-Wrapper) for Android
 - [Electron-PWA-Wrapper](https://github.com/xtools-at/Electron-PWA-Wrapper) for macOS, Windows and Linux
 
 ## Prequisites
