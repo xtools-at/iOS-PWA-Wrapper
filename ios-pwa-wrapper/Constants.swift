@@ -13,7 +13,7 @@ let appTitle = "iOS PWA Wrapper"
 let webAppUrl = URL(string: "https://www.leasingrechnen.at")
 let allowedOrigins = [
     "leasingrechnen.at",
-    "lsng.me"
+    "lsng.me",
 ]
 let menuButtonTitle = NSLocalizedString("menu", comment: "")
 let menuButtonJavascript = """
@@ -27,8 +27,8 @@ let customUserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 11_0_1 like Mac OS X) 
 // UI Settings
 let changeAppTitleToPageTitle = false
 let forceLargeTitle = false
-let enableBounceWhenScrolling = true
-let allowZoom = true
+let enableBounceWhenScrolling = false
+let allowZoom = false
 
 // change Menu button depending on screen width
 // IMPORTANT: do not enable this yet, it's still buggy
