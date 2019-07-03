@@ -9,7 +9,7 @@
 import UIKit
 import WebKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UIScrollViewDelegate {
     
     // MARK: Outlets
     @IBOutlet weak var leftButton: UIBarButtonItem!
@@ -93,6 +93,8 @@ class ViewController: UIViewController {
         webView = WKWebView(frame: CGRect(x: 0, y: 0, width: webViewContainer.frame.width, height: webViewContainer.frame.height))
         webView.navigationDelegate = self
         webView.uiDelegate = self
+        webView.scrollView.delegate = self
+        webView.navigationDelegate = self
         webView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         webViewContainer.addSubview(webView)
         
@@ -174,7 +176,7 @@ class ViewController: UIViewController {
             self.updateRightButtonTitle(invert: true)
         }
         /// listen for device rotation
-        NotificationCenter.default.addObserver(forName: .UIDeviceOrientationDidChange, object: nil, queue: .main, using: deviceRotationCallback)
+        NotificationCenter.default.addObserver(forName: UIDevice.orientationDidChangeNotification, object: nil, queue: .main, using: deviceRotationCallback)
 
         /*
         // @DEBUG: test offline view
@@ -206,7 +208,12 @@ class ViewController: UIViewController {
     deinit {
         webView.removeObserver(self, forKeyPath: #keyPath(WKWebView.isLoading))
         webView.removeObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress))
-        NotificationCenter.default.removeObserver(self, name: .UIDeviceOrientationDidChange, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIDevice.orientationDidChangeNotification, object: nil)
+    }
+    
+    // Disable zooming
+    func scrollViewWillBeginZooming(_ scrollView: UIScrollView, with view: UIView?) {
+        scrollView.pinchGestureRecognizer?.isEnabled = allowZoom
     }
     
     // Helper method to determine wide screen width
@@ -281,11 +288,20 @@ extension ViewController: WKUIDelegate {
         }
         return nil
     }
-    // restrict navigation to target host, open external links in 3rd party apps
+    // restrict navigation to target host, open external links in browser/3rd party apps
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         if let requestUrl = navigationAction.request.url {
             if let requestHost = requestUrl.host {
-                if (requestHost.range(of: allowedOrigin) != nil || requestHost.range(of: allowedOriginShort) != nil) {
+                var openInWrapper = false
+                // loop over allowed origins
+                for allowedOrigin in allowedOrigins  {
+                    if (requestHost.range(of: allowedOrigin) != nil) {
+                        openInWrapper = true
+                        break
+                    }
+                }
+                // open link
+                if (openInWrapper) {
                     decisionHandler(.allow)
                 } else {
                     decisionHandler(.cancel)

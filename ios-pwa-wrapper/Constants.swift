@@ -11,8 +11,10 @@ import UIKit
 // Basic App-/WebView-configuration
 let appTitle = "Leasingrechner"
 let webAppUrl = URL(string: "https://www.leasingrechnen.at")
-let allowedOrigin = "leasingrechnen.at"
-let allowedOriginShort = "lsng.me"
+let allowedOrigins = [
+    "leasingrechnen.at",
+    "lsng.me",
+]
 let menuButtonTitle = NSLocalizedString("menu", comment: "")
 let menuButtonJavascript = """
     $('.button-collapse').sideNav('show');
@@ -25,7 +27,8 @@ let customUserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 11_0_1 like Mac OS X) 
 // UI Settings
 let changeAppTitleToPageTitle = false
 let forceLargeTitle = false
-let enableBounceWhenScrolling = true
+let enableBounceWhenScrolling = false
+let allowZoom = false
 
 // change Menu button depending on screen width
 // IMPORTANT: do not enable this yet, it's still buggy
